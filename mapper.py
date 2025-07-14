@@ -47,4 +47,5 @@ for line in sys.stdin:
     target_categories = {"Computers", "Cameras", "Video Games"}
     if category not in target_categories:
         continue
-    sys.stdout.write("{0}\t{1}\n".format(category, sales))
+    sys.stdout.write("{0}\t{1},{2}\n".format(category, sales, 1))
+

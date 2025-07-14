@@ -2,6 +2,9 @@
 
 import sys
 
+current_category = None
+total_sales = 0
+count = 0
 # The input will be in the form of key-value pairs
 # It is sorted according to the key
 # Each key value pair will be in a new line
@@ -27,6 +30,25 @@ previous_key = None
 
 # For each new line in the standard input 
 for line in sys.stdin:
+    category, values = line.strip().split("\t")
+    sales_str, count_str = values.split(",")
+    sales = float(sales_str)
+    cnt = int(count_str)
+
+    if category == current_category:
+        total_sales += sales
+        count += cnt
+    else:
+        if current_category:
+            avg = total_sales / count if count != 0 else 0
+            sys.stdout.write(f"{current_category}\t{avg:.2f}\n")
+        current_category = category
+        total_sales = sales
+        count = cnt
+
+if current_category:
+    avg = total_sales / count if count != 0 else 0
+    sys.stdout.write(f"{current_category}\t{avg:.2f}\n")
 
     # split the line at the tabulator ("\t")
     # strip removes whitespaces and new lines at the beginning and end of the line
