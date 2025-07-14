@@ -44,4 +44,7 @@ for line in sys.stdin:
     # Key is the payment, value is the sales     
     # With a tab (\t) between key and value
     # New line \n means new record
+    target_categories = {"Computers", "Cameras", "Video Games"}
+    if category not in target_categories:
+        continue
     sys.stdout.write("{0}\t{1}\n".format(category, sales))
